@@ -1,40 +1,12 @@
-{
-  "name": "DagenTot.nl - Countdown Timer",
-  "short_name": "DagenTot",
-  "description": "Tel af naar belangrijke datums",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#0ea5e9",
-  "orientation": "portrait-primary",
-  "icons": [
-    {
-      "src": "/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ],
-  "categories": ["utilities", "productivity"],
-  "screenshots": [],
-  "shortcuts": [
-    {
-      "name": "Nieuwe countdown",
-      "short_name": "Nieuw",
-      "description": "Maak een nieuwe countdown",
-      "url": "/",
-      "icons": [
-        {
-          "src": "/icon-192.png",
-          "sizes": "192x192"
-        }
-      ]
-    }
-  ]
+import DatePicker from '@/components/DatePicker'
+
+export default function Page() {
+  return (
+    <main className="min-h-screen flex items-start justify-center py-12 px-4">
+      <div className="w-full max-w-3xl">
+        <h1 className="text-4xl font-bold mb-6 text-center">DagenTot.nl — Gratis Countdown Timer</h1>
+        <DatePicker />
+      </div>
+    </main>
+  )
 }
