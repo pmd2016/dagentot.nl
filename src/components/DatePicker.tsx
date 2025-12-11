@@ -34,7 +34,7 @@ export default function DatePicker({ initialTitle, initialDate, initialEmoji }: 
   maxDate.setFullYear(maxDate.getFullYear() + 10);
   const maxDateStr = maxDate.toISOString().split('T')[0];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
 
@@ -48,7 +48,23 @@ export default function DatePicker({ initialTitle, initialDate, initialEmoji }: 
     if (title) params.set('title', title);
     if (emoji) params.set('emoji', emoji);
 
-    router.push(`/?${params.toString()}`);
+    const query = params.toString();
+    const target = `/?${query}`;
+
+    try {
+      await router.push(target);
+    } catch (err) {
+      // fallback to full navigation if router fails
+      if (typeof window !== 'undefined') window.location.href = target;
+      return;
+    }
+
+    // If router.push didn't navigate (some environments), apply a short fallback
+    setTimeout(() => {
+      if (typeof window !== 'undefined' && window.location.search !== `?${query}`) {
+        window.location.href = target;
+      }
+    }, 300);
   };
 
   return (
