@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import DatePicker from '@/components/DatePicker'
 import CountdownDisplay from '@/components/CountdownDisplay'
 import ShareButton from '@/components/ShareButton'
+import AdSlot from '@/components/AdSlot'
 import { extractParams, convertSearchParamsToURLSearchParams } from '@/lib/url-state'
 import { calculateCountdown, validateDate } from '@/lib/countdown'
 import { generateCountdownMetadata } from '@/lib/seo'
@@ -24,6 +25,8 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
 export default function Page({ searchParams }: PageProps) {
   const urlSearchParams = convertSearchParamsToURLSearchParams(searchParams);
   const params = extractParams(urlSearchParams);
+  const adSlot = process.env.NEXT_PUBLIC_ADSENSE_SLOT_MAIN;
+  const adClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
 
   const hasCountdown = params && validateDate(params.date);
   const countdown = hasCountdown ? calculateCountdown(params.date) : null;
@@ -31,6 +34,11 @@ export default function Page({ searchParams }: PageProps) {
   return (
     <main className="min-h-screen flex items-start justify-center py-12 px-4">
       <div className="w-full max-w-3xl">
+        {adClient && adSlot && (
+          <div className="mb-6">
+            <AdSlot slot={adSlot} position="top" format="auto" />
+          </div>
+        )}
         {hasCountdown && countdown ? (
           <>
             <CountdownDisplay 
@@ -59,6 +67,11 @@ export default function Page({ searchParams }: PageProps) {
               initialEmoji={params?.emoji}
             />
           </>
+        )}
+        {adClient && adSlot && (
+          <div className="mt-10">
+            <AdSlot slot={adSlot} position="bottom" format="auto" />
+          </div>
         )}
       </div>
     </main>
