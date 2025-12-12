@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import EmojiPicker, { EmojiClickData } from 'emoji-picker-react';
 
 interface DatePickerProps {
   initialTitle?: string;
@@ -19,7 +20,6 @@ const emojiOptions = [
   { emoji: '🎓', label: 'Afstuderen' },
   { emoji: '✈️', label: 'Reis' },
   { emoji: '🏡', label: 'Verhuizing' },
-  { emoji: '❤️', label: 'Valentijn' },
 ];
 
 export default function DatePicker({ initialTitle, initialDate, initialEmoji }: DatePickerProps) {
@@ -28,6 +28,7 @@ export default function DatePicker({ initialTitle, initialDate, initialEmoji }: 
   const [date, setDate] = useState(initialDate || '');
   const [emoji, setEmoji] = useState(initialEmoji || '');
   const [error, setError] = useState('');
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
   const today = new Date().toISOString().split('T')[0];
   const maxDate = new Date();
@@ -119,8 +120,64 @@ export default function DatePicker({ initialTitle, initialDate, initialEmoji }: 
               {option.emoji}
             </button>
           ))}
+          <button
+            type="button"
+            onClick={() => setShowEmojiPicker(true)}
+            className="p-3 text-lg rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-primary-300 dark:hover:border-primary-600 transition-all hover:scale-110 flex flex-col items-center justify-center gap-1"
+            title="More..."
+          >
+            <span className="text-2xl">🔍</span>
+            <span className="text-xs font-medium text-gray-600 dark:text-gray-400">More...</span>
+          </button>
         </div>
       </div>
+
+      {showEmojiPicker && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+          <div className="relative w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden">
+            <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                Kies een emoji
+              </h3>
+              <button
+                type="button"
+                onClick={() => setShowEmojiPicker(false)}
+                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                aria-label="Close"
+              >
+                <svg
+                  className="w-5 h-5 text-gray-600 dark:text-gray-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div className="p-2 max-h-[60vh] overflow-y-auto">
+              <EmojiPicker
+                onEmojiClick={(emojiData: EmojiClickData) => {
+                  setEmoji(emojiData.emoji);
+                  setShowEmojiPicker(false);
+                }}
+                theme="auto"
+                width="100%"
+                searchDisabled={false}
+                skinTonesDisabled={false}
+                previewConfig={{
+                  showPreview: false,
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
       {error && (
         <div className="text-red-600 dark:text-red-400 text-sm">
