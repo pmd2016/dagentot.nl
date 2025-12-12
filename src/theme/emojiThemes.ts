@@ -17,6 +17,15 @@ export const emojiThemes: Record<string, ThemeConfig> = {
     meta: 'text-emerald-200/80',
     emojiRing: 'ring-4 ring-amber-200/70 ring-offset-4 ring-offset-emerald-900/40',
   },
+  '🎂': {
+    wrapper:
+      'rounded-3xl p-8 md:p-10 bg-gradient-to-b from-pink-500 via-rose-500 to-fuchsia-700 border border-pink-200/60 shadow-2xl shadow-rose-800/40 text-white',
+    number: 'text-amber-200 drop-shadow-[0_6px_18px_rgba(251,191,36,0.55)]',
+    heading: 'text-white',
+    sub: 'text-pink-100',
+    meta: 'text-rose-100/90',
+    emojiRing: 'ring-4 ring-amber-200/80 ring-offset-4 ring-offset-pink-600/70 bg-white/10 backdrop-blur-sm',
+  },
 }
 
 export const defaultTheme: ThemeConfig = {
