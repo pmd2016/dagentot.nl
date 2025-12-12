@@ -25,7 +25,7 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
 export default function Page({ searchParams }: PageProps) {
   const urlSearchParams = convertSearchParamsToURLSearchParams(searchParams);
   const params = extractParams(urlSearchParams);
-  const adSlot = process.env.NEXT_PUBLIC_ADSENSE_SLOT_MAIN;
+  const adSlot = process.env.NEXT_PUBLIC_ADSENSE_SLOT_MAIN || '3970087405';
   const adClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
 
   const hasCountdown = params && validateDate(params.date);
