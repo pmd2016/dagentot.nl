@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import EmojiPicker, { EmojiClickData } from 'emoji-picker-react';
+import EmojiPicker, { EmojiClickData, Theme } from 'emoji-picker-react';
 
 interface DatePickerProps {
   initialTitle?: string;
@@ -29,6 +29,30 @@ export default function DatePicker({ initialTitle, initialDate, initialEmoji }: 
   const [emoji, setEmoji] = useState(initialEmoji || '');
   const [error, setError] = useState('');
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [emojiPickerTheme, setEmojiPickerTheme] = useState<Theme>('light');
+
+  useEffect(() => {
+    // Detect current theme
+    const checkTheme = () => {
+      if (typeof window !== 'undefined') {
+        const isDark = document.documentElement.classList.contains('dark');
+        setEmojiPickerTheme(isDark ? 'dark' : 'light');
+      }
+    };
+
+    checkTheme();
+
+    // Watch for theme changes
+    const observer = new MutationObserver(checkTheme);
+    if (typeof window !== 'undefined') {
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class'],
+      });
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const today = new Date().toISOString().split('T')[0];
   const maxDate = new Date();
@@ -166,7 +190,7 @@ export default function DatePicker({ initialTitle, initialDate, initialEmoji }: 
                   setEmoji(emojiData.emoji);
                   setShowEmojiPicker(false);
                 }}
-                theme="auto"
+                theme={emojiPickerTheme}
                 width="100%"
                 searchDisabled={false}
                 skinTonesDisabled={false}
