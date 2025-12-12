@@ -6,24 +6,41 @@ export default function ThemeToggle() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [mounted, setMounted] = useState(false);
 
+  const applyThemeClass = (nextTheme: 'light' | 'dark') => {
+    document.documentElement.classList.toggle('dark', nextTheme === 'dark');
+  };
+
+  const safeGetStoredTheme = (): 'light' | 'dark' | null => {
+    try {
+      return localStorage.getItem('theme') as 'light' | 'dark' | null;
+    } catch {
+      return null;
+    }
+  };
+
+  const safeStoreTheme = (nextTheme: 'light' | 'dark') => {
+    try {
+      localStorage.setItem('theme', nextTheme);
+    } catch {
+      // Safari private mode can block localStorage; ignore in that case.
+    }
+  };
+
   useEffect(() => {
     setMounted(true);
-    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
-    
-    if (savedTheme) {
-      setTheme(savedTheme);
-      document.documentElement.classList.toggle('dark', savedTheme === 'dark');
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setTheme('dark');
-      document.documentElement.classList.add('dark');
-    }
+    const savedTheme = safeGetStoredTheme();
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialTheme = savedTheme ?? (prefersDark ? 'dark' : 'light');
+
+    setTheme(initialTheme);
+    applyThemeClass(initialTheme);
   }, []);
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
-    document.documentElement.classList.toggle('dark');
+    safeStoreTheme(newTheme);
+    applyThemeClass(newTheme);
   };
 
   if (!mounted) return null;
