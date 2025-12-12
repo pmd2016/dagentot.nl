@@ -2,6 +2,7 @@
 
 import { CountdownResult } from '@/types/countdown';
 import { formatDate } from '@/lib/countdown';
+import { emojiThemes, defaultTheme } from '@/theme/emojiThemes';
 
 interface CountdownDisplayProps {
   countdown: CountdownResult;
@@ -10,6 +11,8 @@ interface CountdownDisplayProps {
 }
 
 export default function CountdownDisplay({ countdown, title, emoji }: CountdownDisplayProps) {
+  const theme = (emoji && emojiThemes[emoji]) || defaultTheme;
+
   const getDisplayText = () => {
     if (countdown.isToday) return 'is vandaag!';
     if (countdown.isTomorrow) return 'is morgen!';
@@ -22,44 +25,46 @@ export default function CountdownDisplay({ countdown, title, emoji }: CountdownD
   const showDaysNumber = !countdown.isToday && !countdown.isTomorrow && !countdown.isYesterday;
 
   return (
-    <div className="animate-fade-in text-center">
+    <div className={`animate-fade-in text-center ${theme.wrapper}`}>
       {emoji && (
-        <div className="text-8xl mb-6 animate-scale-in">
-          {emoji}
+        <div className="text-8xl mb-6 animate-scale-in flex justify-center">
+          <div className={`rounded-full p-2 ${theme.emojiRing ?? ''}`}>
+            {emoji}
+          </div>
         </div>
       )}
-      
+
       <div className="mb-8 animate-scale-in" style={{ animationDelay: '0.1s' }}>
         {showDaysNumber && (
-          <div className="text-9xl md:text-[12rem] font-bold text-gray-900 dark:text-white leading-none mb-4">
+          <div className={`text-9xl md:text-[12rem] font-bold leading-none mb-4 ${theme.number}`}>
             {countdown.days}
           </div>
         )}
-        
-        <div className="text-3xl md:text-5xl font-medium text-gray-700 dark:text-gray-300 mb-2">
+
+        <div className={`text-3xl md:text-5xl font-medium mb-2 ${theme.sub}`}>
           {daysText}
         </div>
-        
-        <h1 className="text-4xl md:text-6xl font-bold text-primary-600 dark:text-primary-400">
+
+        <h1 className={`text-4xl md:text-6xl font-bold ${theme.heading}`}>
           {title || 'deze datum'}
         </h1>
       </div>
 
-      <div className="space-y-4 text-lg text-gray-600 dark:text-gray-400 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+      <div className={`space-y-4 text-lg animate-fade-in ${theme.meta}`} style={{ animationDelay: '0.3s' }}>
         <div className="flex justify-center gap-8 flex-wrap">
           <div className="text-center">
-            <div className="text-3xl font-bold text-gray-900 dark:text-white">{countdown.weeks}</div>
+            <div className={`text-3xl font-bold ${theme.number}`}>{countdown.weeks}</div>
             <div className="text-sm uppercase tracking-wide">{countdown.weeks === 1 ? 'week' : 'weken'}</div>
           </div>
-          
+
           <div className="text-center">
-            <div className="text-3xl font-bold text-gray-900 dark:text-white">{countdown.months}</div>
+            <div className={`text-3xl font-bold ${theme.number}`}>{countdown.months}</div>
             <div className="text-sm uppercase tracking-wide">{countdown.months === 1 ? 'maand' : 'maanden'}</div>
           </div>
         </div>
 
         <div className="mt-6 text-base">
-          <span className="text-gray-500 dark:text-gray-500">
+          <span>
             {countdown.isPast ? 'Was op' : 'Tot'} {formatDate(countdown.targetDate)}
           </span>
         </div>
