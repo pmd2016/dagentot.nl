@@ -151,7 +151,7 @@ export default function DatePicker({ initialTitle, initialDate, initialEmoji }: 
             title="More..."
           >
             <span className="text-2xl">🔍</span>
-            <span className="text-xs font-medium text-gray-600 dark:text-gray-400">More...</span>
+            <span className="text-xs font-medium text-gray-600 dark:text-gray-400">Meer...</span>
           </button>
         </div>
       </div>
