@@ -6,6 +6,7 @@ import ThemeToggle from '@/components/ThemeToggle'
 const inter = Inter({ subsets: ['latin'] })
 const adClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT
 const cookiebotId = process.env.NEXT_PUBLIC_COOKIEBOT_ID
+const gaId = process.env.NEXT_PUBLIC_GA_ID || process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
 
 export const metadata: Metadata = {
   title: 'AantalDagenTot.nl - Gratis Countdown Timer',
@@ -47,6 +48,24 @@ export default function RootLayout({
             src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(adClient)}`}
             crossOrigin="anonymous"
           />
+        )}
+        {gaId && (
+          <>
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(gaId)}`}
+            />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${gaId}');
+                `,
+              }}
+            />
+          </>
         )}
         <script
           type="application/ld+json"
