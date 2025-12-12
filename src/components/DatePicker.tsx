@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import EmojiPicker, { EmojiClickData, Theme } from 'emoji-picker-react';
+import EmojiPicker, { EmojiClickData } from 'emoji-picker-react';
 
 interface DatePickerProps {
   initialTitle?: string;
@@ -29,7 +29,7 @@ export default function DatePicker({ initialTitle, initialDate, initialEmoji }: 
   const [emoji, setEmoji] = useState(initialEmoji || '');
   const [error, setError] = useState('');
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-  const [emojiPickerTheme, setEmojiPickerTheme] = useState<Theme>('light');
+  const [emojiPickerTheme, setEmojiPickerTheme] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
     // Detect current theme
