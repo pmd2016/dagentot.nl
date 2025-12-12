@@ -1,5 +1,18 @@
 import { CountdownParams } from '@/types/countdown';
 
+export function convertSearchParamsToURLSearchParams(
+  searchParams: { [key: string]: string | string[] | undefined }
+): URLSearchParams {
+  const params = new URLSearchParams();
+  Object.entries(searchParams).forEach(([key, value]) => {
+    const stringValue = Array.isArray(value) ? value[0] : value;
+    if (stringValue) {
+      params.set(key, stringValue);
+    }
+  });
+  return params;
+}
+
 export function extractParams(searchParams: URLSearchParams): CountdownParams | null {
   const date = searchParams.get('date');
   
