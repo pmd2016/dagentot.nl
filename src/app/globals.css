@@ -2,26 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Light mode (default) */
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 255, 255, 255;
   --background-end-rgb: 255, 255, 255;
 }
 
-/* Allow prefers-color-scheme to set an initial theme */
+/* Dark mode when .dark class is applied - using html selector for higher specificity */
+html.dark {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 17, 24, 39;
+  --background-end-rgb: 17, 24, 39;
+}
+
+/* Initial theme based on system preference - only applies before JS runs */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not(.dark) {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 17, 24, 39;
     --background-end-rgb: 17, 24, 39;
   }
-}
-
-/* Explicit dark mode variables when the .dark class is applied */
-.dark {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 17, 24, 39;
-  --background-end-rgb: 17, 24, 39;
 }
 
 body {
