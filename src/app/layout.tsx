@@ -5,6 +5,7 @@ import ThemeToggle from '@/components/ThemeToggle'
 
 const inter = Inter({ subsets: ['latin'] })
 const adClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT
+const cookiebotId = process.env.NEXT_PUBLIC_COOKIEBOT_ID
 
 export const metadata: Metadata = {
   title: 'AantalDagenTot.nl - Gratis Countdown Timer',
@@ -31,6 +32,15 @@ export default function RootLayout({
   return (
     <html lang="nl" suppressHydrationWarning>
       <head>
+        {cookiebotId && (
+          <script
+            id="Cookiebot"
+            src="https://consent.cookiebot.com/uc.js"
+            data-cbid={cookiebotId}
+            data-blockingmode="auto"
+            type="text/javascript"
+          />
+        )}
         {adClient && (
           <script
             async
