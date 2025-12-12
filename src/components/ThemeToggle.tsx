@@ -7,7 +7,11 @@ export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
 
   const applyThemeClass = (nextTheme: 'light' | 'dark') => {
-    document.documentElement.classList.toggle('dark', nextTheme === 'dark');
+    if (nextTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
   };
 
   const safeGetStoredTheme = (): 'light' | 'dark' | null => {
