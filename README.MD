@@ -1,4 +1,4 @@
-# DagenTot.nl - Countdown Timer
+# AantalDagenTot.nl - Countdown Timer
 
 Een moderne, gebruiksvriendelijke countdown-website gebouwd met Next.js. Tel af naar belangrijke datums en deel je countdowns met een unieke URL.
 
@@ -210,7 +210,7 @@ MIT License - zie LICENSE file voor details
 
 ## 👨‍💻 Auteur
 
-DagenTot.nl - [Website](https://dagentot.nl)
+AantalDagenTot.nl - [Website](https://aantaldagentot.nl)
 
 ## 🙏 Credits
 

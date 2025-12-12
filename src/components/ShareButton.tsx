@@ -18,7 +18,7 @@ export default function ShareButton({ params }: ShareButtonProps) {
       try {
         await navigator.share({
           title: params.title ? `Countdown: ${params.title}` : 'Mijn countdown',
-          text: `Bekijk mijn countdown op DagenTot.nl`,
+          text: `Bekijk mijn countdown op AantalDagenTot.nl`,
           url,
         });
         return;

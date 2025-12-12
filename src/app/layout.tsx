@@ -6,10 +6,10 @@ import ThemeToggle from '@/components/ThemeToggle'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'DagenTot.nl - Gratis Countdown Timer',
+  title: 'AantalDagenTot.nl - Gratis Countdown Timer',
   description: 'Tel af naar belangrijke datums. Vakanties, verjaardagen, evenementen en meer. Deel je countdown met een unieke link.',
   keywords: ['countdown', 'timer', 'aftellen', 'dagen tellen', 'verjaardag', 'vakantie'],
-  authors: [{ name: 'DagenTot.nl' }],
+  authors: [{ name: 'AantalDagenTot.nl' }],
   viewport: 'width=device-width, initial-scale=1',
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#0ea5e9' },
@@ -41,7 +41,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebApplication",
-              "name": "DagenTot.nl",
+              "name": "AantalDagenTot.nl",
               "description": "Gratis countdown tool voor belangrijke datums",
               "applicationCategory": "UtilityApplication",
               "offers": {

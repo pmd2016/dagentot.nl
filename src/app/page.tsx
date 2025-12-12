@@ -52,7 +52,7 @@ export default function Page({ searchParams }: PageProps) {
           </>
         ) : (
           <>
-            <h1 className="text-4xl font-bold mb-6 text-center">DagenTot.nl — Gratis Countdown Timer</h1>
+            <h1 className="text-4xl font-bold mb-6 text-center">AantalDagenTot.nl — Gratis Countdown Timer</h1>
             <DatePicker 
               initialTitle={params?.title}
               initialDate={params?.date}

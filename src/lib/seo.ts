@@ -7,10 +7,10 @@ export function generateCountdownMetadata(
 ): Metadata {
   if (!countdown) {
     return {
-      title: 'DagenTot.nl - Gratis Countdown Timer',
+      title: 'AantalDagenTot.nl - Gratis Countdown Timer',
       description: 'Tel af naar belangrijke datums. Vakanties, verjaardagen, evenementen en meer. Deel je countdown met een unieke link.',
       openGraph: {
-        title: 'DagenTot.nl - Gratis Countdown Timer',
+        title: 'AantalDagenTot.nl - Gratis Countdown Timer',
         description: 'Tel af naar belangrijke datums',
         type: 'website',
       },
@@ -36,7 +36,7 @@ export function generateCountdownMetadata(
     : `${countdown.days} ${daysText} tot ${eventTitle}`;
   
   return {
-    title: `${pageTitle} | DagenTot.nl`,
+    title: `${pageTitle} | AantalDagenTot.nl`,
     description,
     openGraph: {
       title: pageTitle,
