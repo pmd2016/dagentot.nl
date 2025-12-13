@@ -13,16 +13,20 @@ export const metadata: Metadata = {
   description: 'Tel af naar belangrijke datums. Vakanties, verjaardagen, evenementen en meer. Deel je countdown met een unieke link.',
   keywords: ['countdown', 'timer', 'aftellen', 'dagen tellen', 'verjaardag', 'vakantie'],
   authors: [{ name: 'AantalDagenTot.nl' }],
-  viewport: 'width=device-width, initial-scale=1',
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#0ea5e9' },
-    { media: '(prefers-color-scheme: dark)', color: '#0c4a6e' }
-  ],
   manifest: '/manifest.json',
   icons: {
     icon: '/favicon.ico',
     apple: '/apple-touch-icon.png',
   },
+}
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#0ea5e9' },
+    { media: '(prefers-color-scheme: dark)', color: '#0c4a6e' }
+  ]
 }
 
 export default function RootLayout({
