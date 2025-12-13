@@ -147,11 +147,21 @@ export default function DatePicker({ initialTitle, initialDate, initialEmoji }: 
           <button
             type="button"
             onClick={() => setShowEmojiPicker(true)}
-            className="p-3 text-lg rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-primary-300 dark:hover:border-primary-600 transition-all hover:scale-110 flex flex-col items-center justify-center gap-1"
-            title="More..."
+            className={`p-3 text-lg rounded-lg border-2 transition-all hover:scale-110 flex flex-col items-center justify-center gap-1 ${
+              emoji && !emojiOptions.find(opt => opt.emoji === emoji)
+                ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
+                : 'border-gray-200 dark:border-gray-700 hover:border-primary-300 dark:hover:border-primary-600'
+            }`}
+            title={emoji && !emojiOptions.find(opt => opt.emoji === emoji) ? emoji : "Meer..."}
           >
-            <span className="text-2xl">🔍</span>
-            <span className="text-xs font-medium text-gray-600 dark:text-gray-400">Meer...</span>
+            {emoji && !emojiOptions.find(opt => opt.emoji === emoji) ? (
+              <span className="text-3xl">{emoji}</span>
+            ) : (
+              <>
+                <span className="text-2xl">🔍</span>
+                <span className="text-xs font-medium text-gray-600 dark:text-gray-400">Meer...</span>
+              </>
+            )}
           </button>
         </div>
       </div>
