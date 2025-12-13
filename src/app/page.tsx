@@ -5,6 +5,7 @@ import ShareButton from '@/components/ShareButton'
 import AdSlot from '@/components/AdSlot'
 import Accordion from '@/components/Accordion'
 import ExpandableText from '@/components/ExpandableText'
+import CountdownActions from '@/components/CountdownActions'
 import { extractParams, convertSearchParamsToURLSearchParams } from '@/lib/url-state'
 import { calculateCountdown, validateDate } from '@/lib/countdown'
 import { generateCountdownMetadata } from '@/lib/seo'
@@ -48,9 +49,7 @@ export default function Page({ searchParams }: PageProps) {
               title={params.title}
               emoji={params.emoji}
             />
-            <div className="mt-8 flex justify-center">
-              <ShareButton params={params} />
-            </div>
+            <CountdownActions params={params} />
             <div className="mt-12">
               <h2 className="text-2xl font-bold mb-6 text-center">Veelgestelde vragen</h2>
               <Accordion
@@ -72,14 +71,6 @@ export default function Page({ searchParams }: PageProps) {
                     description: 'Nee, AantalDagenTot.nl is volledig gratis te gebruiken. Je kunt onbeperkt countdowns maken zonder registratie.',
                   },
                 ]}
-              />
-            </div>
-            <div className="mt-12">
-              <h2 className="text-2xl font-bold mb-6 text-center">Nieuwe countdown maken</h2>
-              <DatePicker 
-                initialTitle={params.title}
-                initialDate={params.date}
-                initialEmoji={params.emoji}
               />
             </div>
           </>
