@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import ThemeToggle from '@/components/ThemeToggle'
+import Footer from '@/components/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 const adClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT
@@ -88,9 +89,12 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.className} min-h-screen`}>
+      <body className={`${inter.className} min-h-screen flex flex-col`}>
         <ThemeToggle />
-        {children}
+        <main className="flex-1">
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   )

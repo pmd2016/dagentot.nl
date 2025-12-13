@@ -4,6 +4,7 @@ import CountdownDisplay from '@/components/CountdownDisplay'
 import ShareButton from '@/components/ShareButton'
 import AdSlot from '@/components/AdSlot'
 import Accordion from '@/components/Accordion'
+import ExpandableText from '@/components/ExpandableText'
 import { extractParams, convertSearchParamsToURLSearchParams } from '@/lib/url-state'
 import { calculateCountdown, validateDate } from '@/lib/countdown'
 import { generateCountdownMetadata } from '@/lib/seo'
@@ -97,6 +98,23 @@ export default function Page({ searchParams }: PageProps) {
               initialDate={params?.date}
               initialEmoji={params?.emoji}
             />
+            <div className="mt-8 text-center max-w-2xl mx-auto">
+              <ExpandableText
+                text="<b>Wil je snel weten hoeveel dagen het nog is tot een belangrijke datum?</b> Met <b>AantalDagenTot.nl</b> zie je in &eacute;&eacute;n oogopslag hoeveel dagen, weken en maanden er nog over zijn tot jouw moment. Of het nu gaat om een vakantie, een verjaardag, een deadline of een feestdag: aftellen wordt eenvoudig &eacute;n leuk.<br>
+<br>
+Stel, je vraagt je af: <em>hoeveel dagen is het nog tot Kerst?</em> Of je wilt weten hoe lang het nog duurt voordat je zomervakantie begint, een examen start of een groot evenement plaatsvindt. Met AantalDagenTot.nl voer je simpelweg een datum in &mdash; of kies je deze via de kalender &mdash; en je krijgt direct een duidelijk overzicht. Geen gedoe, geen account nodig.<br>
+<br>
+Wat AantalDagenTot.nl extra handig maakt, is dat je elke countdown kunt <b>delen via een unieke link</b>. Zo kun je bijvoorbeeld een aftelpagina maken voor &ldquo;Vakantie Frankrijk&rdquo;, &ldquo;Verjaardag Anna&rdquo; of &ldquo;Lancering nieuwe website&rdquo; en deze eenvoudig opslaan, delen of bookmarken. Iedereen met de link ziet exact dezelfde countdown.<br>
+<br>
+De website is ontworpen met een <b>strak, modern en gebruiksvriendelijk ontwerp</b>, dat zowel op desktop als mobiel prettig werkt. Dankzij de ingebouwde <b>donkere en lichte modus</b> past de weergave zich aan jouw voorkeur of systeeminstelling aan. Zo blijft aftellen comfortabel, op elk moment van de dag.<br>
+<br>
+AantalDagenTot.nl is bedoeld als een <b>praktische tool voor dagelijks gebruik</b>: snel, overzichtelijk en betrouwbaar. Geen overbodige functies, maar precies wat je nodig hebt om grip te krijgen op tijd. Of je nu vooruitkijkt naar iets leuks of juist een belangrijke datum niet wilt vergeten &mdash; met AantalDagenTot.nl weet je altijd waar je aan toe bent.<br>
+<br>
+Begin vandaag nog met aftellen en ontdek hoe simpel het kan zijn om tijd inzichtelijk te maken."
+                maxWords={50}
+                className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed"
+              />
+            </div>
             <div className="mt-12">
               <h2 className="text-2xl font-bold mb-6 text-center">Veelgestelde vragen</h2>
               <Accordion
@@ -111,7 +129,7 @@ export default function Page({ searchParams }: PageProps) {
                   },
                   {
                     title: 'Welke datums kan ik kiezen?',
-                    description: 'Je kunt elke toekomstige datum kiezen tot maximaal 10 jaar vooruit. De timer werkt ook voor datums in het verleden, zodat je kunt zien hoeveel dagen geleden iets was.',
+                    description: 'Je kunt elke toekomstige datum kiezen tot maximaal 10 jaar vooruit. De timer werkt nog niet voor datums in het verleden.',
                   },
                   {
                     title: 'Zijn er kosten verbonden?',
