@@ -43,11 +43,11 @@ export default function RootLayout({
           />
         )}
         {adClient && (
-          <script
-            async
+        <script
+          async
             src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(adClient)}`}
-            crossOrigin="anonymous"
-          />
+          crossOrigin="anonymous"
+        />
         )}
         {gaId && (
           <>

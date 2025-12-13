@@ -97,6 +97,29 @@ export default function Page({ searchParams }: PageProps) {
               initialDate={params?.date}
               initialEmoji={params?.emoji}
             />
+            <div className="mt-12">
+              <h2 className="text-2xl font-bold mb-6 text-center">Veelgestelde vragen</h2>
+              <Accordion
+                items={[
+                  {
+                    title: 'Hoe werkt de countdown timer?',
+                    description: 'Kies een datum en eventueel een titel en emoji. De timer toont automatisch hoeveel dagen, weken en maanden het nog is tot de gekozen datum. Je kunt je countdown delen via de deelknop.',
+                  },
+                  {
+                    title: 'Kan ik mijn countdown delen?',
+                    description: 'Ja! Klik op de "Deel countdown" knop om een unieke link te krijgen. Deze link kun je delen met anderen, zodat zij ook jouw countdown kunnen zien.',
+                  },
+                  {
+                    title: 'Welke datums kan ik kiezen?',
+                    description: 'Je kunt elke toekomstige datum kiezen tot maximaal 10 jaar vooruit. De timer werkt ook voor datums in het verleden, zodat je kunt zien hoeveel dagen geleden iets was.',
+                  },
+                  {
+                    title: 'Zijn er kosten verbonden?',
+                    description: 'Nee, AantalDagenTot.nl is volledig gratis te gebruiken. Je kunt onbeperkt countdowns maken zonder registratie.',
+                  },
+                ]}
+              />
+            </div>
           </>
         )}
         {adClient && adSlot && (
