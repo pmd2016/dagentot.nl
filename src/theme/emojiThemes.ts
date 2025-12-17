@@ -89,6 +89,33 @@ export const emojiThemes: Record<string, ThemeConfig> = {
     meta: 'text-amber-200/80',
     emojiRing: 'ring-4 ring-yellow-200/70 ring-offset-4 ring-offset-orange-700/40',
   },
+  '🎆': {
+    wrapper:
+      'rounded-3xl p-8 md:p-10 bg-gradient-to-b from-slate-900 via-purple-900 to-indigo-900 border border-purple-400/60 shadow-2xl shadow-purple-900/40 text-white',
+    number: 'text-purple-300 drop-shadow-[0_5px_25px_rgba(196,181,253,0.45)]',
+    heading: 'text-purple-200',
+    sub: 'text-indigo-100/90',
+    meta: 'text-slate-200/80',
+    emojiRing: 'ring-4 ring-purple-300/70 ring-offset-4 ring-offset-slate-900/40',
+  },
+  '❤️': {
+    wrapper:
+      'rounded-3xl p-8 md:p-10 bg-gradient-to-b from-red-500 via-pink-500 to-rose-600 border border-pink-300/60 shadow-2xl shadow-rose-900/40 text-white',
+    number: 'text-pink-200 drop-shadow-[0_5px_25px_rgba(251,207,232,0.45)]',
+    heading: 'text-pink-100',
+    sub: 'text-red-100/90',
+    meta: 'text-rose-200/80',
+    emojiRing: 'ring-4 ring-pink-300/70 ring-offset-4 ring-offset-red-600/40',
+  },
+  '👑': {
+    wrapper:
+      'rounded-3xl p-8 md:p-10 bg-gradient-to-b from-yellow-400 via-amber-500 to-orange-600 border border-yellow-300/60 shadow-2xl shadow-orange-900/40 text-gray-900',
+    number: 'text-yellow-800 drop-shadow-[0_5px_25px_rgba(146,64,14,0.45)]',
+    heading: 'text-amber-900',
+    sub: 'text-orange-800/90',
+    meta: 'text-yellow-700/80',
+    emojiRing: 'ring-4 ring-yellow-400/70 ring-offset-4 ring-offset-amber-500/40',
+  },
 }
 
 export const defaultTheme: ThemeConfig = {
